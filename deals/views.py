@@ -27,7 +27,6 @@ class DealsView(generics.GenericAPIView, mixins.CreateModelMixin, mixins.ListMod
             DealInstance = Deals(customer=fields[0], item=fields[1],
                                  total=fields[2], quantity=fields[3],
                                  date=fields[4])
-
             DealInstance.save()
             return Response(status=status.HTTP_200_OK)
         return self.create(request)
@@ -37,8 +36,5 @@ class DealsView(generics.GenericAPIView, mixins.CreateModelMixin, mixins.ListMod
 
 
 class DealsListView(ListAPIView):
-
     queryset = Deals.objects.all()
     serializer_class = DealSerializer
-    # filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ['customer', 'item', 'total', 'quantity', 'date']
